@@ -17,22 +17,25 @@
 * **其他** <br>
   同时需要使用多个代理分流的用户，例如：使用不同的代理，访问 netflix, 访问 google，telegram，游戏加速等。
 
-> <del>不适用：这是一个服务器软件，因此不适用直接在手机端运行。</del> 如果你爱折腾，可以在 Android 手机上运行(需要 root)。<br>
-> MacOS, linux 用户可以直接使用。windows 版本暂时不支持（也许以后会开发）。
-
 ## 预览
-  管理界面登录
-  ![](../static/prev0.png)
-  代理配置
-  ![](../static/prev1.png)
-  规则配置
-  ![](../static/prev2.png)
+
+web 管理界面，灵活设置规则，即时生效，无需重启服务。
+
+管理界面登录
+![](../static/prev0.png)
+代理配置
+![](../static/prev1.png)
+规则配置
+![](../static/prev2.png)
 
 ## 网络拓扑
-  ![](../static/topology.svg)
+
+![](../static/topology.svg)
 
 ## 安装
-  基于 Go 语言开发，仅单个可执行文件，解压即用，更好的跨平台。
+
+仅单个可执行文件，解压即用。
+
 ```bash
 -rw-r--r--  1 clachlan978  staff   210B Dec  1 00:30 config.example.json
 -rwxr-xr-x  1 clachlan978  staff    16M Dec  1 00:30 kungfu
@@ -96,12 +99,13 @@ maxDays 单位 天，表示日志做多保留天数; <br>
   (条件允许，建议使用更高配置，使用千兆网络)
 * 编辑 `/etc/sysctl.conf`, 设置 `net.ipv4.ip_forward = 1` 启用转发。
 * 下载 KungFu linux 版本，修改 config.json 文件，并启动（需要 root 权限）。
-* 修改路由器（或者3层交换）添加静态路由表，路由设置参考 config.json 文件中的配置。
+* 修改路由器（或者3层交换）添加静态路由表，路由设置参考 `config.json` 文件中的配置。
 * 修改内网 DHCP 服务器，设置下发 DNS 为上述部署 KungFu 的服务。
 * 内网电脑，重连网络，检查 DHCP 是否生效
 * 网络测试，尝试 `ping google.com` 是否已通
 
-如果看到返回是和 config.json 中配置的网段一致，表示配置正确。
+如果看到返回是和 `config.json` 中配置的网段一致，表示配置正确。
+
 ```bash
 ~# ping google.com
 PING google.com (10.172.0.21) 56(84) bytes of data.
@@ -170,7 +174,6 @@ ubnt ER-X 路由器是基于 linux mips 架构，有不少家庭用户在弱电�
 * 解压，修改 config.json, 然后 `sudo ./kungfu ` 启动服务
 * 添加自动启动脚本，放到 `/config/scripts/post-config.d/` 目录，注意脚本需要有可执行权限
 
-以上，kungfu pro 服务就搭建好了
 
 > ubnt 其他系列是否支持，我们暂时没有测试。
 
@@ -225,35 +228,11 @@ ubnt ER-X 路由器是基于 linux mips 架构，有不少家庭用户在弱电�
 > 这并不是一个完全免费的工具。
 > 再次声明，本工具主要解决的痛点是代理的"最后一公里" -- 内网。
 > 主要推荐在团队或者企业内部使用。
-> 如果你是相关负责人，我们建议先做好相关测试/试用再考虑购买。
 
 **价格方案**
 
-| &nbsp; | Beta 版 | Trial 版 | Standard 版 | Professional 版 |
-|--------|--------|---------|------------|----------------|
-| 规则数    | 30 ~ 500  | 5       | 200        | 99999999       |
-| 价格     | 免费     | 免费      | ￥89/年      | ￥199/年         |
+使用自愿捐赠方案，**价格 100元/年起**，没有上限， 具体请加入 [telegram](https://t.me/kungfupro) 群组获取最新的捐赠付款码。
 
-> <small>Beta 版用于尝鲜，过期后降级为 Trail 版本。<br>
-> 降级造成的规则条数超限，超限规则不会被删除，但会被停用。<br><br>
-> Beta 版授权码不定期放出，规则数量不定。
-></small>
-
-**如何购买？**
-
-微信转账后请邮件发送你的 `serverId` 至邮箱： `clachlan978@gmail.com` <br>
-可能由于时差关系，大概会在 1、2天内收到 License 激活码。小众软件，请谅解。
-
-邮件模板：
-
-```markdown
-serverId: 035aee8838c937f0b748ecc19239507f61ede3fa
-购买版本：Standard
-付款方式：微信扫码
-附： 支付截图
-```
-
-![](../static/weixin-dashang.png)
 
 ## 下载 & 更新
 
@@ -275,19 +254,16 @@ Docker 用户
 
 Beta License:
 ```plain
-H4sIAAAAAAAA/wCgAV/+kD/DB12/kOn8X//b8b82kUaJmat5TDh5fGRSZuFg/OvNLL4gGT4IjyOZd6MTvARxD5G5drNLQ211ut9KIY0/OJZsAKY6UlU91pYFk8kUBzMfpJwyprjwCNLPF7kUR/yULZj2PLEC8MQW86GUH67i9mkaKIlzlTi3Lloma02PuGPE2VjUANLrk8ZKi04O1fzEgN7dP9HUvN7ISStBs+uFdFfRmSqY7WxRnGIYk0R1UelD8DH01UcuRIsnFmM8nplzJdrQNnxUtm3CTIaZppy7zEeUdzJddCPQfn4gLkpkQH3KrLsksgGS8w1lsn0FTby+13vvyvDdeSjCVEs26I2KEPtVADChnVtOyhAG4X0Pt2xGl+Ub2Wb4xNW/6rFNKTCfDqKvmpHVVPv4otCJaKR2wduLcAiZTQHTNIIEumD4VNSA/fEucEj2AnX9dyXSYc8h4mmS1cLQ7yomBWQ7/f3kyZJ0DBZzYGXQygCWQM3q0tQBmcTzKWyDGrXG+HQjSHHlf9mS6d52s9TdE69If3CU7l4fmyyrplrQfyenTJwfgMsBAAD//+Pz3bKgAQAAX01ea
+H4sIAAAAAAAA/wCgAV/+X9Oq/1keziSqoOWOhr/zloumAYuHsQfdJkro8My39NhoqNlXoFhbdyQgeAVxsMIzzjjuSUoX88TMUmN/EqGLkbGZEtssc3G3NLaTHDuhPDXNXB6VefSpAi2+mVdP3rfD3PGh+dYBLPAjJkiVzEIqzTX0jZi79K0tZzq+D6xBwCkOwTk6qk3HZzhKkwPU6n6CvOT6aBnHA20254QLXDfUbzhEHeMnWFlkgTdbsz8eGAQmyBE5vWcAeFC3P6qqRFHepgm1W2bg86BTlNn8SiTl2yhez7Z1+zoxJT2/fl9A23hHF/zo3xu/+SK1DTctvY7gykfkNCJIMnmkY9yx/vcWIlRGk5boZI9WZ6m/0fEJ9OqvKTsyvuJUpndDNKuD6SXNH3qii/P0qp3z/pi5GHynd9bIOWwJVpIbkNBL5Il3vbCpXmk+1sWkYmH2HqCA4D8WfTk0Z7gG1vrjRAdlIxHXDneBH1SJ+UBZStx1cQd31h1i1EjevisaPckQkTXgkEDEP7ORRcWW2LuiZTNFILqeSgtPt04IL9VXjHgw7x2Fef8BAAD//56g5GSgAQAAX01ea
 ```
 
 ```plain
 License type  : Beta
-Max rules     : 200
+Max rules     : 500
 Issue to      : Potential users
-Expire        : 2019-01-15 17:30:09
+Expire        : 2019-11-06 14:03:11
+Issue time    : 2019-04-20 14:03:11
 ```
-
-### 参与用户调研免费获得授权码
-
-**前往[用户调研](https://docs.google.com/forms/d/e/1FAIpQLSdGODqmamMXBOLzkxpdI9XMOJORIPuq3PJuO1Ozsby6E6FSlw/viewform?usp=pp_url)表单**
 
 ## 沟通
 
@@ -410,4 +386,49 @@ Telegram: https://t.me/kungfupro
 ```plain
 nflxvideo
 netflix
+```
+
+### 推荐规则(域名关键字)
+
+> 满足大部分(主要针对开发者)需要
+
+```
+bitbucket
+npmjs
+gopkg
+uber.org
+golang
+lithium
+entware
+sourceforge
+amazonaws
+nflxvideo
+netflix
+openwrt
+youtu
+cloudflare
+phncdn
+twimg
+t.co
+dropbox
+ftchinese
+amazonaws
+t.me
+fast
+appspot
+blogspot
+freenom
+goo.gl
+bandwagonhost
+telegram
+ytimg
+fbcdn
+fb.me
+bbc
+reddit.com
+zeplin
+zpl.io
+tunsafe
+ubnt.com
+etcd.io
 ```
